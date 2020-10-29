@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ShingTestMapper extends BaseMapper<ShingTest> {
     void executeSql(String sql);
 
+    void add(ShingTest shingTest);
+
 }

@@ -4,6 +4,7 @@ import com.example.demoorder.Mapper.ShingTestMapper;
 import com.example.demoorder.entity.ShingTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,10 +34,18 @@ public class ShingController {
         return shingTestMapper.selectList(null);
 
     }
+
     @GetMapping("execu")
     public Integer executeSql() {
-         shingTestMapper.executeSql("");
-         return 0;
+        shingTestMapper.executeSql("");
+        return 0;
+
+    }
+
+    @PostMapping("add")
+    public Integer addData(@RequestBody ShingTest shingTest) {
+        shingTestMapper.add(shingTest);
+        return 0;
 
     }
 
