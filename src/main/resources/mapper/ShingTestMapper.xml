@@ -25,12 +25,7 @@
 
     </insert>
 
-    <select id="qryDataList" resultType="Base_Column_List">
-        select <include refid="Base_Column_List"/> from resource_host_computer_device where device_type = 'disk'
-        <if test="null != hostId">
-            and host_id = #{hostId}
-        </if>
-    </select>
+
 
 
 </mapper>
