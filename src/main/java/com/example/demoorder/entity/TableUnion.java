@@ -4,6 +4,8 @@ package com.example.demoorder.entity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @Data
 @Accessors(chain = true)
 public class TableUnion {
@@ -12,7 +14,7 @@ public class TableUnion {
 
     private long UnionId;
 
-    private long ageSum;
+    private BigDecimal ageSum;
 
     private String name;
 

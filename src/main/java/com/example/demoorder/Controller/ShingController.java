@@ -59,6 +59,10 @@ public class ShingController {
 
     }
 
+    /**
+     * 测试select *,union，group by，sum
+     * @return
+     */
     @PostMapping("testUnion")
     public List<TableUnion> testUnion() {
         List<TableUnion> tableUnionList = shingTestMapper.testUnion();
@@ -68,12 +72,22 @@ public class ShingController {
 
     }
 
+    /**
+     * 测试sum and case
+     * @param id
+     * @return
+     */
     @PostMapping("testSum")
     public Map<String, BigDecimal> testSum(Integer id) {
         Map<String, BigDecimal> sum = shingTestMapper.testSum(Long.valueOf(id));
         return sum;
     }
 
+    /**
+     * 测试in select
+     * @param
+     * @return
+     */
     @PostMapping("testInSelect")
     public List<TableUnion> testInSelect(Integer age) {
         List<TableUnion> testInSelectList = shingTestMapper.testInSelect(Long.valueOf(age));
@@ -81,6 +95,10 @@ public class ShingController {
 
     }
 
+    /**
+     * 测试多个join,并且含有时间计算以及基本运算
+     * @return
+     */
     @PostMapping("testNJoin")
     public Map<String, Object> testNJoin() {
         Map<String, Object> NJoin = shingTestMapper.testNJoin();
