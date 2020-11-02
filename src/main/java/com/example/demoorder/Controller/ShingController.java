@@ -114,7 +114,7 @@ public class ShingController {
     public List<Map<String, Object>> testNJoin() {
         logger.info("测试多个join,并且含有时间计算以及基本运算:");
         List<Map<String, Object>> NJoin = shingTestService.testNJoin();
-        logger.info("测试in select返回结果:" + NJoin.toString());
+        logger.info("测试多个join返回结果:" + NJoin.toString());
         return NJoin;
     }
 
