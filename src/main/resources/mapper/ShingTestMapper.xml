@@ -44,7 +44,7 @@
     table_a WHERE id=1 AND b_id=1 GROUP BY id,b_id
     UNION
     SELECT id,c_id,a_name,SUM(age) AS age_sum FROM table_b
-    WHERE id=1 AND c_id=1 GROUP BY id,c_id
+    WHERE id=1 AND c_id=2 GROUP BY id,c_id
     UNION
     SELECT a.id,12 AS union_id,100 AS NAME,b.age/a.age AS age_sum FROM
     (SELECT id,d_id,age,
@@ -67,5 +67,30 @@ SELECT
     <select id ="testInSelect" resultMap="UnionResultMap">
 SELECT  `comment`,a_name as name FROM table_b WHERE 1=1 AND id IN (SELECT b_id FROM table_a)
     </select>
+
+    <select id ="testNJoin" resultType="java.util.Map">
+        SELECT b.a_name AS AName,
+        c.b_name AS BName,
+        d.c_name AS CName,
+        e.d_name AS DName,
+        e.e_name AS EName,
+        UNIX_TIMESTAMP( a.create_time ) - UNIX_TIMESTAMP( b.create_time ) AS ABtime,
+        DATE_FORMAT(a.create_time, '%Y-%m-%d') AS ATime
+        FROM table_a a
+        JOIN table_b b
+        ON a.b_id=b.id
+        JOIN table_c c
+        ON b.c_id=c.id
+        JOIN table_d d
+        ON c.d_id=d.id
+        JOIN table_e e
+        ON d.e_id=e.id
+        WHERE 1=1 AND a.age &lt;(SELECT
+        MAX(table_b.age)
+        FROM table_b
+        )
+    </select>
+
+
 
 </mapper>

@@ -22,4 +22,6 @@ public interface ShingTestMapper extends BaseMapper<ShingTest> {
 
     List<TableUnion> testInSelect(Long id);
 
+    Map<String, Object> testNJoin();
+
 }

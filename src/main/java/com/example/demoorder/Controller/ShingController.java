@@ -81,4 +81,11 @@ public class ShingController {
 
     }
 
+    @PostMapping("testNJoin")
+    public Map<String, Object> testNJoin() {
+        Map<String, Object> NJoin = shingTestMapper.testNJoin();
+        return NJoin;
+    }
+
+
 }
