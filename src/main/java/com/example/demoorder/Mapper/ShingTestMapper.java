@@ -2,7 +2,6 @@ package com.example.demoorder.Mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.example.demoorder.entity.ShingTest;
-import com.example.demoorder.entity.TableUnion;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigDecimal;
@@ -15,13 +14,13 @@ public interface ShingTestMapper extends BaseMapper<ShingTest> {
 
     void add(ShingTest shingTest);
 
-    List<TableUnion> testUnion();
+    List<Map<String,Object>> testUnion();
 
     Map<String, BigDecimal> testSum(Long Id);
 
 
-    List<TableUnion> testInSelect(Long id);
+    List<Map<String,Object>> testInSelect(Long id);
 
-    Map<String, Object> testNJoin();
+    List<Map<String,Object>> testNJoin();
 
 }

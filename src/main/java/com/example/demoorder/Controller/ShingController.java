@@ -2,7 +2,6 @@ package com.example.demoorder.Controller;
 
 import com.example.demoorder.Mapper.ShingTestMapper;
 import com.example.demoorder.entity.ShingTest;
-import com.example.demoorder.entity.TableUnion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +63,8 @@ public class ShingController {
      * @return
      */
     @PostMapping("testUnion")
-    public List<TableUnion> testUnion() {
-        List<TableUnion> tableUnionList = shingTestMapper.testUnion();
+    public List<Map<String,Object>> testUnion() {
+        List<Map<String,Object>> tableUnionList = shingTestMapper.testUnion();
 
 
         return tableUnionList;
@@ -89,8 +88,8 @@ public class ShingController {
      * @return
      */
     @PostMapping("testInSelect")
-    public List<TableUnion> testInSelect(Integer age) {
-        List<TableUnion> testInSelectList = shingTestMapper.testInSelect(Long.valueOf(age));
+    public List<Map<String,Object>> testInSelect(Integer age) {
+        List<Map<String,Object>> testInSelectList = shingTestMapper.testInSelect(Long.valueOf(age));
         return testInSelectList;
 
     }
@@ -100,8 +99,8 @@ public class ShingController {
      * @return
      */
     @PostMapping("testNJoin")
-    public Map<String, Object> testNJoin() {
-        Map<String, Object> NJoin = shingTestMapper.testNJoin();
+    public List<Map<String,Object>> testNJoin() {
+        List<Map<String,Object>> NJoin = shingTestMapper.testNJoin();
         return NJoin;
     }
 
