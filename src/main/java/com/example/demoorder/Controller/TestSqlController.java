@@ -42,8 +42,8 @@ public class TestSqlController {
      * 测试 not exists子查询
      */
     @PostMapping("/testNotExistsAndSubQuery")
-    public List<TableQuery> testNotExistsAndSubQuery(Long bid) {
-        return testSqlService.testNotExistsAndSubQuery(bid);
+    public List<TableQuery> testNotExistsAndSubQuery(Long bId) {
+        return testSqlService.testNotExistsAndSubQuery(bId);
     }
 
 }
