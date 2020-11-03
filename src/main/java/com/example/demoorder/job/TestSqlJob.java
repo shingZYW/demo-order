@@ -1,5 +1,6 @@
 package com.example.demoorder.job;
 
+import com.example.demoorder.entity.TableQuery;
 import com.example.demoorder.service.ShingTestService;
 import com.example.demoorder.service.TestSqlService;
 import org.slf4j.Logger;
@@ -23,14 +24,22 @@ public class TestSqlJob {
     private ShingTestService shingTestService;
 
     /**
-     * 每隔5分钟执行一次
+     * 每隔1分钟执行一次
      */
-    @Scheduled(cron = "0 */5 * * * ?")
+    @Scheduled(cron = "0 */1 * * * ?")
     public void testSqlJob() {
-        testSqlService.testNotExistsAndSubQuery(66L);
-        testSqlService.testComplexSqlAsChildTable("测试哈哈");
-        testSqlService.testSelectAndLeftJoin();
-        testSqlService.testSumAndGroupBy(66L);
+
+        List<TableQuery> list1 = testSqlService.testNotExistsAndSubQuery(66L);
+        logger.info("定时任务->>测试 not exists子查询->>>" + list1.toString());
+
+        List<TableQuery> list2 = testSqlService.testComplexSqlAsChildTable("测试哈哈");
+        logger.info("定时任务->>测试 复杂SQL作为子表->>>" + list2.toString());
+
+        List<TableQuery> list3 = testSqlService.testSelectAndLeftJoin();
+        logger.info("定时任务->>测试 select * from left join->>>" + list3.toString());
+
+        List<TableQuery> list4 = testSqlService.testSumAndGroupBy(66L);
+        logger.info("定时任务->>测试 sum and group by->>>" + list4.toString());
 
 
         logger.info("测试select *,union，group by，sum:");
