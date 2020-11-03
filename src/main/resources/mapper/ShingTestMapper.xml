@@ -26,6 +26,7 @@
     </insert>
 
 <select id="testUnion"  resultType="java.util.Map">
+-- 测试 select *,union，group by，sum:
     SELECT * FROM (
     SELECT id,b_id AS union_id,'tableA' AS NAME ,SUM(age) AS age_sum FROM
     table_a WHERE id=1 AND b_id=1 GROUP BY id,b_id
@@ -43,6 +44,7 @@
 </select>
 
     <select id ="testSum" resultType="java.util.Map">
+-- 测试sum and case
 SELECT
          SUM(CASE WHEN t.comment='cat' AND t.age = 18 THEN 1 ELSE 0 END) AS numOfCat,
          SUM(CASE WHEN t.comment='dog' AND t.age = 18 THEN 1 ELSE 0 END) AS numOfDog
@@ -52,10 +54,12 @@ SELECT
 
 
     <select id ="testInSelect" resultType="java.util.Map">
+-- 测试in select
 SELECT  `comment`,a_name as name FROM table_b WHERE 1=1 AND id IN (SELECT b_id FROM table_a)
     </select>
 
     <select id ="testNJoin" resultType="java.util.Map">
+-- 测试多个join,并且含有时间计算以及基本运算
         SELECT b.a_name AS AName,
         c.b_name AS BName,
         d.c_name AS CName,
