@@ -69,9 +69,8 @@ public class ShingController {
      */
     @PostMapping("testUnion")
     public List<Map<String, Object>> testUnion() {
-        logger.info("测试select *,union，group by，sum:");
         List<Map<String, Object>> tableUnionList = shingTestService.testUnion();
-        logger.info("测试select *,union，group by，sum返回结果" + tableUnionList.toString());
+        logger.info("测试select *,union，group by，sum->>>"+tableUnionList.toString());
         return tableUnionList;
 
     }
@@ -84,9 +83,8 @@ public class ShingController {
      */
     @PostMapping("testSum")
     public Map<String, BigDecimal> testSum(Integer id) {
-        logger.info("测试sum and case");
         Map<String, BigDecimal> sum = shingTestService.testSum(Long.valueOf(id));
-        logger.info("测试sum and case返回结果:" + sum.toString());
+        logger.info("测试sum and case->>>"+sum.toString());
         return sum;
     }
 
@@ -98,9 +96,8 @@ public class ShingController {
      */
     @PostMapping("testInSelect")
     public List<Map<String, Object>> testInSelect(Integer age) {
-        logger.info("测试in select");
         List<Map<String, Object>> testInSelectList = shingTestService.testInSelect(Long.valueOf(age));
-        logger.info("测试in select返回结果:" + testInSelectList.toString());
+        logger.info("测试in select->>>"+testInSelectList.toString());
         return testInSelectList;
 
     }
@@ -112,9 +109,9 @@ public class ShingController {
      */
     @PostMapping("testNJoin")
     public List<Map<String, Object>> testNJoin() {
-        logger.info("测试多个join,并且含有时间计算以及基本运算:");
+
         List<Map<String, Object>> NJoin = shingTestService.testNJoin();
-        logger.info("测试多个join返回结果:" + NJoin.toString());
+        logger.info("测试多个join,并且含有时间计算以及基本运算->>>"+NJoin.toString());
         return NJoin;
     }
 

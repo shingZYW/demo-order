@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +27,11 @@ public class TestSqlJob {
     /**
      * 每隔1分钟执行一次
      */
-    @Scheduled(cron = "0 */1 * * * ?")
+    @PostConstruct
+    @Scheduled(cron = "0 */3 * * * ?")
     public void testSqlJob() {
 
+        logger.info("=========================定时任务查询开始=======================================");
         List<TableQuery> list1 = testSqlService.testNotExistsAndSubQuery(66L);
         logger.info("定时任务->>测试 not exists子查询->>>" + list1.toString());
 
@@ -42,21 +45,21 @@ public class TestSqlJob {
         logger.info("定时任务->>测试 sum and group by->>>" + list4.toString());
 
 
-        logger.info("测试select *,union，group by，sum:");
+        logger.info("定时任务->>测试select *,union，group by，sum:");
         List<Map<String, Object>> tableUnionList = shingTestService.testUnion();
-        logger.info("测试select *,union，group by，sum返回结果" + tableUnionList.toString());
+        logger.info("定时任务->>测试select *,union，group by，sum返回结果" + tableUnionList.toString());
 
-        logger.info("测试sum and case");
+        logger.info("定时任务->>测试sum and case");
         Map<String, BigDecimal> sum = shingTestService.testSum(Long.valueOf(70L));
-        logger.info("测试sum and case返回结果:" + sum.toString());
+        logger.info("定时任务->>测试sum and case返回结果:" + sum.toString());
 
-        logger.info("测试in select");
+        logger.info("定时任务->>测试in select");
         List<Map<String, Object>> testInSelectList = shingTestService.testInSelect(Long.valueOf(18L));
-        logger.info("测试in select返回结果:" + testInSelectList.toString());
+        logger.info("定时任务->>测试in select返回结果:" + testInSelectList.toString());
 
-        logger.info("测试多个join,并且含有时间计算以及基本运算:");
+        logger.info("定时任务->>测试多个join,并且含有时间计算以及基本运算:");
         List<Map<String, Object>> NJoin = shingTestService.testNJoin();
-        logger.info("测试多个join返回结果:" + NJoin.toString());
-
+        logger.info("定时任务->>测试多个join返回结果:" + NJoin.toString());
+        logger.info("=========================定时任务查询结束=======================================");
     }
 }
