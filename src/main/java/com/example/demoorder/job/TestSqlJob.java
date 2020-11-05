@@ -9,17 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 @Component
+
 public class TestSqlJob {
 
     private static Logger logger = LoggerFactory.getLogger(TestSqlJob.class);
     @Autowired
     private TestSqlService testSqlService;
+
 
     @Autowired
     private ShingTestService shingTestService;
@@ -27,7 +28,7 @@ public class TestSqlJob {
     /**
      * 每隔1分钟执行一次
      */
-    @PostConstruct
+
     @Scheduled(cron = "0 */3 * * * ?")
     public void testSqlJob() {
 
