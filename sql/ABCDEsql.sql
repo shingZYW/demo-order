@@ -5,7 +5,7 @@ CREATE TABLE `table_a` (
   `b_id` bigint(20) NOT NULL COMMENT 'b的id',
   `age` bigint(20) COMMENT '列注释填充',
   `comment` varchar(255) COMMENT '列注释填充',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '列注释填充',
   PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB ;
@@ -18,7 +18,7 @@ CREATE TABLE `table_b` (
   `c_id` bigint(20) DEFAULT NULL COMMENT 'c的id',
   `age` bigint(20) COMMENT '列注释填充',
   `comment` varchar(255) COMMENT '列注释填充',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '列注释填充',
   PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB ;
@@ -31,7 +31,7 @@ CREATE TABLE `table_c` (
   `b_name` varchar(50)DEFAULT NULL COMMENT 'b的名字',
   `age` bigint(20) COMMENT '列注释填充',
   `comment` varchar(255) COMMENT '列注释填充',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '列注释填充',
   PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB ;
@@ -44,7 +44,7 @@ CREATE TABLE `table_d` (
   `c_name`varchar(50)DEFAULT NULL COMMENT 'c的名字',
   `age` bigint(20) COMMENT '列注释填充',
   `comment` varchar(255) COMMENT '列注释填充',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '列注释填充',
   PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB ;
@@ -57,7 +57,7 @@ CREATE TABLE `table_e` (
   `e_name`varchar(50)DEFAULT NULL COMMENT 'e的名字',
   `age` bigint(20) COMMENT '列注释填充',
   `comment` varchar(255) COMMENT '列注释填充',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '列注释填充',
   PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB ;
