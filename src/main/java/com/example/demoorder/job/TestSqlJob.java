@@ -1,6 +1,7 @@
 package com.example.demoorder.job;
 
-import com.example.demoorder.entity.TableQuery;
+import com.example.demoorder.Mapper.ShingTestMapper;
+import com.example.demoorder.entity.TableA;
 import com.example.demoorder.service.ShingTestService;
 import com.example.demoorder.service.TestSqlService;
 import org.slf4j.Logger;
@@ -9,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +27,18 @@ public class TestSqlJob {
     @Autowired
     private ShingTestService shingTestService;
 
+
+    @Autowired
+    private ShingTestMapper shingTestMapper;
+
     /**
      * 每隔1分钟执行一次
      */
 
-    @Scheduled(cron = "0 */3 * * * ?")
+    @Scheduled(cron = "0/10 * * * * ?")
     public void testSqlJob() {
 
+/*
         logger.info("=========================定时任务查询开始=======================================");
         List<TableQuery> list1 = testSqlService.testNotExistsAndSubQuery(66L);
         logger.info("定时任务->>测试 not exists子查询->>>" + list1.toString());
@@ -79,6 +86,63 @@ public class TestSqlJob {
             throwable.printStackTrace();
         }
         logger.info("定时任务->>测试多个join返回结果:" + NJoin.toString());
+
+        List<TableA> tableASList1 = new ArrayList<>();
+        TableA tableA1 = new TableA();
+        tableA1.setId(115);
+        tableA1.setAge(23);
+        tableA1.setBId(123);
+        tableA1.setComment("批量插入115");
+        TableA tableA2 = new TableA();
+        tableA2.setId(116);
+        tableA2.setAge(23);
+        tableA2.setBId(123);
+        tableA2.setComment("批量插入115");
+        tableASList1.add(tableA1);
+        tableASList1.add(tableA2);
+        try {
+            logger.info("定时任务->>批量插入表a数据");
+            shingTestService.insertListA(tableASList1);
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+*/
+
+
+        List<TableA> tableASList2 = new ArrayList<>();
+        TableA tableA3 = new TableA();
+        tableA3.setId(115);
+        tableA3.setAge(23);
+        tableA3.setBId(123);
+        tableA3.setCreateTime(new Date());
+        tableA3.setComment("批量更新115");
+        TableA tableA4 = new TableA();
+        tableA4.setId(116);
+        tableA4.setAge(23);
+        tableA4.setBId(123);
+        tableA4.setCreateTime(new Date());
+        tableA4.setComment("批量更新116");
+        tableASList2.add(tableA3);
+        tableASList2.add(tableA4);
+
+
+        try {
+            logger.info("定时任务->>批量更新表a数据" + tableASList2.toString());
+            Integer res = 0;
+            res = shingTestService.UpdateTableA(tableASList2);
+            logger.info("==========更新" + res + "条数据============");
+            logger.info("定时任务->>批量更新表a数据结束=====");
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+
+        logger.info("定时任务->>查询表a数据115,116");
+        List<Map<String, Object>> table115 = shingTestMapper.selectTableAById(115L);
+        logger.info("===================查询table115:===================" + table115.toString());
+        List<Map<String, Object>> table116 = shingTestMapper.selectTableAById(116L);
+        logger.info("===================查询able116:====================" + table116.toString());
         logger.info("=========================定时任务查询结束=======================================");
     }
 }

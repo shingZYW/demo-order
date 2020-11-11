@@ -107,14 +107,15 @@ SELECT  `comment`,a_name as name FROM table_b WHERE 1=1 AND id IN (SELECT b_id F
 
 
     <insert id="insertListA" parameterType="java.util.List">
+-- 批量插入
         INSERT INTO `table_a` (
 
-     `id`,`b_id`,`age`,`comment`
+    `b_id`,`age`,`comment`
         )
         VALUES
         <foreach collection="list" item="item" index="index" separator=",">
             (
-            #{item.id},
+
             #{item.bId},
             #{item.age},
             #{item.comment}
@@ -134,18 +135,21 @@ SELECT* from table_a;
 
 
     <update id="UpdateTableA"  parameterType="java.util.List">
-
+-- 批量更新
             <foreach collection="list" index="index" item="item" separator=";">
-                update table_a
-                <set>
-                    #{item.bId},
-                    #{item.age},
-                    #{item.comment}
-                </set>
+                update table_a set
+                    age=#{item.age},
+                    comment=#{item.comment},
+                    create_time=#{item.createTime}
                 where id =#{item.id}
             </foreach>
-
     </update>
+
+
+    <select id ="selectTableAById" resultType="java.util.Map">
+-- 查询表
+SELECT* from table_a where id =#{id};
+    </select>
 
 
 </mapper>

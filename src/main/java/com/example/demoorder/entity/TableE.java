@@ -16,8 +16,7 @@ public class TableE {
    private String dName;
    private String eName;
    private String comment;
-   private Date createDate;
-   private Date updateDate;
-
+   private Date createTime;
+   private Date updateTime;
 
 }

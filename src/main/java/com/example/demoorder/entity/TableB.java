@@ -16,8 +16,8 @@ public class TableB {
    private  long age;
    private String aName;
    private String comment;
-   private Date createDate;
-   private Date updateDate;
+   private Date createTime;
+   private Date updateTime;
 
 
 }
