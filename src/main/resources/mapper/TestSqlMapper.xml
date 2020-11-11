@@ -22,12 +22,12 @@ GROUP BY id;
 
     <select id="testNotExistsAndSubQuery" resultMap="BaseResultMap">
 -- 测试 not exists子查询
-  SELECT * FROM table_a AS a
+   SELECT id,b_id,age,COMMENT,create_time,update_time FROM table_a AS a
   WHERE
   NOT EXISTS (
-  SELECT * FROM table_a WHERE b_id = a.b_id AND create_time>a.create_time
+  SELECT `id`,`b_id`,`age`,`COMMENT`,`create_time`,`update_time` FROM table_a WHERE b_id = a.b_id AND create_time>a.create_time
   )
-  AND b_id=#{bId}
+  AND b_id=71
   AND age IN (13,22,18)
   GROUP BY id;
     </select>
@@ -37,7 +37,7 @@ GROUP BY id;
 	 SELECT a.id,b.a_name
 	 FROM table_a AS a ,table_b AS b,
 	 (
-	 SELECT * FROM table_c
+	 SELECT `id`,`d_id`,`b_name`,`age`,`COMMENT`,`create_time`,`update_time` FROM table_c
 	 WHERE
 	 NOT EXISTS (SELECT 1 FROM table_c WHERE COMMENT=#{comment})
 	 AND d_id>1
@@ -52,10 +52,11 @@ GROUP BY id;
     <select id="testSelectAndLeftJoin" resultMap="BaseResultMap">
 -- 测试 select * from left join
 SELECT a_name,b_id,c_id,a.create_time,b.update_time FROM
-(SELECT * FROM table_a) AS a LEFT JOIN
-(SELECT * FROM table_b) AS b
+(SELECT `id`,`b_id`,`age`,`COMMENT`,`create_time`,`update_time` FROM table_a) AS a LEFT JOIN
+(SELECT `id`,`a_name`,`c_id`,`age`,`COMMENT`,`create_time`,`update_time` FROM table_b) AS b
 ON a.b_id = b.id
-GROUP BY a.b_id DESC;
+GROUP BY a.b_id
+order BY a.b_id  DESC;
     </select>
 
 

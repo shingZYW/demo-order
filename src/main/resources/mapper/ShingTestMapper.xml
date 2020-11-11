@@ -14,7 +14,7 @@
         id,name,one,two,three,four,five
     </sql>
     <select id="executeSql" parameterType="String" >
-       INSERT INTO shing_test(id,NAME,COMMENT,STATUS) VALUES (7,'1003','shingtest',1);
+       INSERT INTO shing_test(id,NAME,COMMENT,STATUS) VALUES (12,'测试啊啊','shingtest',1);
 
 
   </select>
@@ -27,7 +27,7 @@
 
 <select id="testUnion"  resultType="java.util.Map">
 -- 测试 select *,union，group by，sum:
-    SELECT * FROM (
+    SELECT id,union_id,NAME,age_sum FROM (
     SELECT id,b_id AS union_id,'tableA' AS NAME ,SUM(age) AS age_sum FROM
     table_a WHERE id=1 AND b_id=1 GROUP BY id,b_id
     UNION
@@ -82,6 +82,27 @@ SELECT  `comment`,a_name as name FROM table_b WHERE 1=1 AND id IN (SELECT b_id F
         )
     </select>
 
+
+    <select id="dropTable" parameterType="string">
+        drop table if exists `test_shing${name}`
+    </select>
+
+
+    <select id="createTable" parameterType="string">
+   create table `${name}` (
+  `id` bigint(128) not null auto_increment comment '主键id',
+  `space_id` bigint(128) default null comment '空间id',
+  `file_name` varchar(255) default null comment '文件或者文件夹名称',
+  `size` bigint(128) default null comment '文件或者文件夹大小',
+  `update_time` datetime default null comment '列注释填充',
+  `storage_path` varchar(5372) comment '存储路径',
+  `dir_or_file` char(1) default null comment '1 文件, 0 文件夹',
+  `parent_path` varchar(5372) comment '父目录路径',
+  `file_level` int(11) default null comment '文件级别',
+  `path_code` varchar(5372) comment '列注释填充',
+  primary key (`id`)
+) engine=innodb row_format=dynamic comment '表注释填充';
+    </select>
 
 
 </mapper>
