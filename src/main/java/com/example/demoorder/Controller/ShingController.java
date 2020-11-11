@@ -2,6 +2,7 @@ package com.example.demoorder.Controller;
 
 import com.example.demoorder.Mapper.ShingTestMapper;
 import com.example.demoorder.entity.ShingTest;
+import com.example.demoorder.entity.TableAReq;
 import com.example.demoorder.service.ShingTestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,14 +50,14 @@ public class ShingController {
     }
 
     @GetMapping("execu")
-    public Integer executeSql() {
+    public Integer executeSql() throws Throwable {
         shingTestService.executeSql("");
         return 0;
 
     }
 
     @PostMapping("add")
-    public Integer addData(@RequestBody ShingTest shingTest) {
+    public Integer addData(@RequestBody ShingTest shingTest) throws Throwable {
         shingTestService.add(shingTest);
         return 0;
 
@@ -69,8 +70,14 @@ public class ShingController {
      */
     @PostMapping("testUnion")
     public List<Map<String, Object>> testUnion() {
-        List<Map<String, Object>> tableUnionList = shingTestService.testUnion();
-        logger.info("测试select *,union，group by，sum->>>"+tableUnionList.toString());
+        List<Map<String, Object>> tableUnionList = null;
+        try {
+            tableUnionList = shingTestService.testUnion();
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        logger.info("测试select *,union，group by，sum->>>" + tableUnionList.toString());
         return tableUnionList;
 
     }
@@ -83,8 +90,14 @@ public class ShingController {
      */
     @PostMapping("testSum")
     public Map<String, BigDecimal> testSum(Integer id) {
-        Map<String, BigDecimal> sum = shingTestService.testSum(Long.valueOf(id));
-        logger.info("测试sum and case->>>"+sum.toString());
+        Map<String, BigDecimal> sum = null;
+        try {
+            sum = shingTestService.testSum(Long.valueOf(id));
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        logger.info("测试sum and case->>>" + sum.toString());
         return sum;
     }
 
@@ -97,7 +110,7 @@ public class ShingController {
     @PostMapping("testInSelect")
     public List<Map<String, Object>> testInSelect(Integer age) {
         List<Map<String, Object>> testInSelectList = shingTestService.testInSelect(Long.valueOf(age));
-        logger.info("测试in select->>>"+testInSelectList.toString());
+        logger.info("测试in select->>>" + testInSelectList.toString());
         return testInSelectList;
 
     }
@@ -110,10 +123,60 @@ public class ShingController {
     @PostMapping("testNJoin")
     public List<Map<String, Object>> testNJoin() {
 
-        List<Map<String, Object>> NJoin = shingTestService.testNJoin();
-        logger.info("测试多个join,并且含有时间计算以及基本运算->>>"+NJoin.toString());
+        List<Map<String, Object>> NJoin = null;
+        try {
+            NJoin = shingTestService.testNJoin();
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        logger.info("测试多个join,并且含有时间计算以及基本运算->>>" + NJoin.toString());
         return NJoin;
     }
 
+    @PostMapping("testDropTable")
+    public void testDropTable(String name) {
+        logger.info("测试删除表");
+        shingTestMapper.dropTable(name);
+    }
 
+    @PostMapping("testCreateTable")
+    public void testcreateTable(String name) {
+        logger.info("测试建表");
+        shingTestMapper.createTable(name);
+    }
+
+
+    @PostMapping("insertListA")
+    public void insertList(@RequestBody TableAReq tableAReq) {
+        logger.info("测试批量插入");
+        try {
+            shingTestService.insertListA(tableAReq.getTableAList());
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    @PostMapping("listAllTableA")
+    public List<Map<String, Object>> listAllTableA(String name) {
+        logger.info("listA");
+
+        return shingTestMapper.selectAllTableA();
+    }
+
+
+    @PostMapping("UpdateTableA")
+    public Integer UpdateTableA(@RequestBody TableAReq tableAReq) {
+        logger.info("UpdateTableA");
+        Integer res = 0;
+        try {
+            res = shingTestService.UpdateTableA(tableAReq.getTableAList());
+        }
+
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return res;
+    }
 }

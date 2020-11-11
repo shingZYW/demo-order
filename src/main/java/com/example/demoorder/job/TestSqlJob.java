@@ -47,11 +47,23 @@ public class TestSqlJob {
 
 
         logger.info("定时任务->>测试select *,union，group by，sum:");
-        List<Map<String, Object>> tableUnionList = shingTestService.testUnion();
+        List<Map<String, Object>> tableUnionList = null;
+        try {
+            tableUnionList = shingTestService.testUnion();
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         logger.info("定时任务->>测试select *,union，group by，sum返回结果" + tableUnionList.toString());
 
         logger.info("定时任务->>测试sum and case");
-        Map<String, BigDecimal> sum = shingTestService.testSum(Long.valueOf(70L));
+        Map<String, BigDecimal> sum = null;
+        try {
+            sum = shingTestService.testSum(Long.valueOf(70L));
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         logger.info("定时任务->>测试sum and case返回结果:" + sum.toString());
 
         logger.info("定时任务->>测试in select");
@@ -59,7 +71,13 @@ public class TestSqlJob {
         logger.info("定时任务->>测试in select返回结果:" + testInSelectList.toString());
 
         logger.info("定时任务->>测试多个join,并且含有时间计算以及基本运算:");
-        List<Map<String, Object>> NJoin = shingTestService.testNJoin();
+        List<Map<String, Object>> NJoin = null;
+        try {
+            NJoin = shingTestService.testNJoin();
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         logger.info("定时任务->>测试多个join返回结果:" + NJoin.toString());
         logger.info("=========================定时任务查询结束=======================================");
     }
