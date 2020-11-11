@@ -1,6 +1,7 @@
 package com.example.demoorder.service.impl;
 
 import com.example.demoorder.Mapper.TestSqlMapper;
+import com.example.demoorder.entity.TableB;
 import com.example.demoorder.entity.TableQuery;
 import com.example.demoorder.service.TestSqlService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,10 @@ public class TestSqlServiceImpl implements TestSqlService {
     @Override
     public List<TableQuery> testSelectAndLeftJoin() {
         return testSqlMapper.testSelectAndLeftJoin();
+    }
+
+    @Override
+    public void testBatchUpdate(List<TableB> list) {
+         testSqlMapper.testBatchUpdate(list);
     }
 }

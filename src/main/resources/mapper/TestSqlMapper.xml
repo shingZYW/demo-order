@@ -60,4 +60,12 @@ order BY a.b_id  DESC;
     </select>
 
 
+    <update id="testBatchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            UPDATE table_b set
+            a_name = #{item.aName}
+            WHERE  id = #{item.id}
+        </foreach>
+    </update>
+
 </mapper>
