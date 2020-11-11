@@ -108,16 +108,21 @@ SELECT  `comment`,a_name as name FROM table_b WHERE 1=1 AND id IN (SELECT b_id F
 
     <insert id="insertListA" parameterType="java.util.List">
         INSERT INTO `table_a` (
-     `b_id`,`age`,`comment`
+
+     `id`,`b_id`,`age`,`comment`
         )
         VALUES
         <foreach collection="list" item="item" index="index" separator=",">
             (
+            #{item.id},
             #{item.bId},
             #{item.age},
             #{item.comment}
             )
         </foreach>
+        ON DUPLICATE KEY UPDATE
+        `b_id`=values(b_id),`age`=values(age),`comment`=values(comment);
+
     </insert>
 
 

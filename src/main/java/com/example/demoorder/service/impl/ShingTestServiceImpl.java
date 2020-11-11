@@ -2,6 +2,7 @@ package com.example.demoorder.service.impl;
 
 import com.example.demoorder.Mapper.ShingTestMapper;
 import com.example.demoorder.entity.ShingTest;
+import com.example.demoorder.entity.TableA;
 import com.example.demoorder.service.ShingTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,15 @@ public class ShingTestServiceImpl implements ShingTestService {
     @Override
     public List<Map<String, Object>> testNJoin() {
         return shingTestMapper.testNJoin();
+    }
+
+    @Override
+    public Integer insertListA(List<TableA> tableAList) {
+        return shingTestMapper.insertListA(tableAList);
+    }
+
+    @Override
+    public Integer UpdateTableA(List<TableA> tableAList) throws Throwable {
+        return shingTestMapper.UpdateTableA(tableAList);
     }
 }
