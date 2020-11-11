@@ -19,5 +19,5 @@ public interface TestSqlMapper extends BaseMapper<TableQuery> {
 
     List<TableQuery> testSelectAndLeftJoin();
 
-    void testBatchUpdate( List<TableB> list);
+    void testBatchUpdate(List<TableB> list);
 }

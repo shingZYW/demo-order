@@ -59,11 +59,13 @@ GROUP BY a.b_id DESC;
     </select>
 
 
-    <update id="testBatchUpdate" parameterType="java.util.List">
-        <foreach collection="list" item="item" index="index" separator=";">
-            UPDATE table_b set
-            a_name = #{item.aName}
-            WHERE  id = #{item.id}
+    <update id="testBatchUpdate" >
+        <foreach collection="list" item="TableB" index="index" open="" close="" separator=";">
+          UPDATE table_b set
+           a_name = #{TableB.aName},
+            c_id = #{TableB.cId},
+            comment =#{TableB.comment}
+            WHERE id = #{TableB.id}
         </foreach>
     </update>
 
