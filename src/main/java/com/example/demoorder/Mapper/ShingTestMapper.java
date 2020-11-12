@@ -38,4 +38,7 @@ public interface ShingTestMapper extends BaseMapper<ShingTest> {
 
     Integer UpdateTableA(List<TableA> tableAList);
 
+
+    List<Map<String, Object>> selectTableAById(Long id);
+
 }
