@@ -15,4 +15,6 @@ public interface TestSqlService {
     List<TableQuery> testSelectAndLeftJoin();
 
     void testBatchUpdate(List<TableB> list) throws Throwable;
+
+
 }

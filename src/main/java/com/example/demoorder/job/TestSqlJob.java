@@ -32,7 +32,7 @@ public class TestSqlJob {
     private ShingTestMapper shingTestMapper;
 
     /**
-     * 每隔1分钟执行一次
+     * 每隔10秒执行一次
      */
 
     @Scheduled(cron = "0/10 * * * * ?")
@@ -125,6 +125,9 @@ public class TestSqlJob {
         tableA4.setComment("批量更新116");
         tableASList2.add(tableA3);
         tableASList2.add(tableA4);
+        //tableASList2.add(new TableA().setId(117).setComment("批量更新117").setAge(19).setBId(213));
+        //tableASList2.add(new TableA().setId(117).setComment("批量更新118").setAge(29).setBId(217));
+
 
 
         try {

@@ -179,4 +179,26 @@ public class ShingController {
         }
         return res;
     }
+
+
+    @PostMapping("updateBatch")
+    public Integer updateBatch(@RequestBody TableAReq tableAReq) {
+        logger.info("updateBatch");
+        Integer res = 0;
+        try {
+            res = shingTestService.updateBatch(tableAReq.getTableAList());
+        }
+        catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return res;
+    }
+    @PostMapping("listTableAById")
+    public List<Map<String, Object>> listTableAById(long id) {
+        logger.info("listA");
+
+        return shingTestMapper.selectTableAById(id);
+    }
+
+
 }

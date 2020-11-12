@@ -9,13 +9,13 @@ import java.util.Map;
 
 public interface ShingTestService {
 
-    void executeSql(String sql)throws Throwable;
+    void executeSql(String sql) throws Throwable;
 
-    void add(ShingTest shingTest)throws Throwable;
+    void add(ShingTest shingTest) throws Throwable;
 
-    List<Map<String, Object>> testUnion()throws Throwable;
+    List<Map<String, Object>> testUnion() throws Throwable;
 
-    Map<String, BigDecimal> testSum(Long Id)throws Throwable;
+    Map<String, BigDecimal> testSum(Long Id) throws Throwable;
 
     List<Map<String, Object>> testInSelect(Long id);
 
@@ -25,6 +25,8 @@ public interface ShingTestService {
 
 
     Integer UpdateTableA(List<TableA> tableAList) throws Throwable;
+
+    Integer updateBatch(List<TableA> tableAList) throws Throwable;
 
 
 }

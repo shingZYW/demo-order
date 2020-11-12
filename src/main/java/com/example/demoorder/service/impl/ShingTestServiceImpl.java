@@ -6,6 +6,7 @@ import com.example.demoorder.entity.TableA;
 import com.example.demoorder.service.ShingTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -53,8 +54,14 @@ public class ShingTestServiceImpl implements ShingTestService {
         return shingTestMapper.insertListA(tableAList);
     }
 
+    @Transactional
     @Override
     public Integer UpdateTableA(List<TableA> tableAList) throws Throwable {
         return shingTestMapper.UpdateTableA(tableAList);
+    }
+
+    @Override
+    public Integer updateBatch(List<TableA> tableAList) throws Throwable {
+        return shingTestMapper.updateBatch(tableAList);
     }
 }
